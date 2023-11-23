@@ -5,7 +5,7 @@ from sys import exit
 pg.init()
 pg.mixer.init()
 
-SCREEN_WIDTH = 800
+SCREEN_WIDTH = 900
 SCREEN_HEIGHT = 600
 TITLE = "Hang Em High"
 FPS = 60
@@ -26,7 +26,7 @@ BG = "#17EAD9"
 fonts = []
 fonts.append(pg.font.Font("assets/fnt/FasterOne-Regular.ttf", 68))  # TITLEFONT
 fonts.append(pg.font.Font("assets/fnt/OtomanopeeOne-Regular.ttf", 24))  # FONT
-fonts.append(pg.font.Font("assets/fnt/OtomanopeeOne-Regular.ttf", 40))  # WORDFONT
+fonts.append(pg.font.Font("assets/fnt/OtomanopeeOne-Regular.ttf", 34))  # WORDFONT
 fonts.append(pg.font.Font("assets/fnt/OtomanopeeOne-Regular.ttf", 60))  # MESSAGEFONT
 fonts.append(pg.font.Font("assets/fnt/OtomanopeeOne-Regular.ttf", 48))  # MENUTITLEFONT
 fonts.append(pg.font.Font("assets/fnt/OtomanopeeOne-Regular.ttf", 40))  # MENUFONT
