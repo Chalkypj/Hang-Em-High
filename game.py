@@ -33,7 +33,11 @@ class Game:
 
     def draw(self):
         self.canvas.fill(BG)
-        self.canvas.blit(images[self.status], (100, 150))
+        txt = fonts[0].render("Hang Em High", True, RED)
+        draw_word = self.get_draw_word()
+        self.canvas.blit(txt, (SCREEN_WIDTH / 2 - txt.get_width() / 2, 20))
+        self.canvas.blit(draw_word, (225, 260))
+        self.canvas.blit(images[self.status], (20, 160))
         for letter in letters:
             x, y, ltr, vis = letter
             if vis:
@@ -70,3 +74,13 @@ class Game:
         for line in wordFile:
             words.append(line.strip())
         return words
+
+    def get_draw_word(self):
+        txt = ""
+        for letter in self.word:
+            if letter in self.guess:
+                txt += letter + " "
+            else:
+                txt += "_ "
+        draw_word = fonts[2].render(txt, True, BLACK)
+        return draw_word
