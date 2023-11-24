@@ -5,34 +5,39 @@ class Button:
     def __init__(self, text, width, height, pos, elevation, game):
         self.elevation = elevation
         self.dynamic = elevation
-        self.originalY = pos[1]
-        self.btnTop = pg.Rect(pos, (width, height))
-        self.btnTopColor = BTNTOP
-        self.btnTopText = fonts[6].render(text, True, WHITE)
-        self.btnTxtRect = self.btnTopText.get_rect(center=self.btnTop.center)
-        self.btnBottom = pg.Rect(pos, (width, elevation))
-        self.btnBottomColor = BTNBOTTOM
+        self.original_y = pos[1]
+        self.button_top = pg.Rect(pos, (width, height))
+        self.button_top_colour = BTNTOP
+        self.button_top_text = fonts[6].render(text, True, WHITE)
+        self.button_text_rect = self.button_top_text.get_rect(
+            center=self.button_top.center
+        )
+        self.button_bottom = pg.Rect(pos, (width, elevation))
+        self.button_bottom_colour = BTNBOTTOM
         self.pressed = False
         self.game = game
 
-    def drawBtn(self):
-        self.btnTop.y = self.originalY - self.dynamic
-        self.btnTxtRect.center = self.btnTop.center
-        self.btnBottom.midtop = self.btnTop.midtop
-        self.btnBottom.height = self.btnTop.height + self.dynamic
+    def draw_button(self):
+        self.button_top.y = self.original_y - self.dynamic
+        self.button_text_rect.center = self.button_top.center
+        self.button_bottom.midtop = self.button_top.midtop
+        self.button_bottom.height = self.button_top.height + self.dynamic
         pg.draw.rect(
-            self.game.gameSurface, self.btnBottomColor, self.btnBottom, border_radius=18
+            self.game.canvas,
+            self.button_bottom_colour,
+            self.button_bottom,
+            border_radius=18,
         )
         pg.draw.rect(
-            self.game.gameSurface, self.btnTopColor, self.btnTop, border_radius=18
+            self.game.canvas, self.button_top_colour, self.button_top, border_radius=18
         )
-        self.game.gameSurface.blit(self.btnTopText, self.btnTxtRect)
-        self.checkClick()
+        self.game.canvas.blit(self.button_top_text, self.button_text_rect)
+        self.check_click()
 
-    def checkClick(self):
+    def check_click(self):
         mousePos = pg.mouse.get_pos()
-        if self.btnTop.collidepoint(mousePos):
-            self.btnTopColor = BTNHLGHT
+        if self.button_top.collidepoint(mousePos):
+            self.button_top_colour = BTNHLGHT
             if pg.mouse.get_pressed()[0]:
                 self.dynamic = 0
                 self.pressed = True
@@ -42,4 +47,4 @@ class Button:
                     self.pressed = False
         else:
             self.dynamic = self.elevation
-            self.btnTopColor = BTNTOP
+            self.button_top_colour = BTNTOP
